@@ -2,4 +2,115 @@
     ViewBag.Title = "Home Page";
 }
 
-<h1>Index</h1>
+<main>
+    <div class="container-fluid px-4">
+        
+        <div class="card mb-4" style="margin-top : 50px !important">
+            <div class="card-header">
+                <form method="POST" action="/Home/Index" class="register-form" id="register-form">
+                    <div class="row" style="justify-content:space-around !important">
+                        <div class="col-5">
+                            <label for="category-film"
+                                   class="col-form-label">Chỉ tiêu:</label>
+                            <select class="form-select" name="normId" aria-label="Default select example" required>
+                                <option selected value="">Chọn chỉ tiêu</option>
+                                @{ var lhp = new QuanLyAsp.Daos.tblUserDao().getlist();
+                                }
+                                @foreach (var item3 in lhp)
+                                {
+                                    <option value="@item3.NormId">@item3.Name - @item3.Method - @item3.Standard - @item3.Cost </option>
+                                }
+
+
+                            </select>
+                        </div>
+                        <div class="col-3">
+                            <label for="category-film"
+                                   class="col-form-label">Từ ngày:</label>
+                            <input type="date" class="form-control" id="category-film" name="orderDate" required>
+                        </div>
+                        <div class="col-3">
+                            <label for="category-film"
+                                   class="col-form-label">Đến ngày:</label>
+                            <input type="date" class="form-control" id="category-film" name="returnDate" required>
+                        </div>
+                        <div class="col-1">
+                            <label for="category-film"
+                                   class="col-form-label"></label><br />
+                            <button type="submit" class="btn btn-success" style="margin-top:10px !important">
+                                Lọc
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            @if (ViewBag.List.Count == 0)
+            {
+                <div style="margin:20px auto;">
+                    <h3>Không có kết quả nào phù hợp</h3>
+                </div>
+            }
+            else
+            {
+                <div style="margin:20px auto;">
+                    <h3>Danh sách thông tin hợp đồng</h3>
+                </div>
+            }
+            <div class="card-body" style="margin-top : -15px !important" >
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>OrderId</th>
+                            <th>OrderNumber</th>
+                            <th>Customer</th>
+                            <th>OrderDate</th>
+                            <th>ReturnDate</th>
+                            <th>OrderPerson</th>
+                            <th>ContactPhone</th>
+                            <th>CheckStandard</th>
+                            <th>Require</th>
+                            <th>Receiver</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.List)
+                        {
+
+                            <tr>
+                                <td>@item.OrderId</td>
+                                <td>
+                                    @item.OrderNumber
+                                </td>
+                                <td>
+                                    @item.tblCustomer.Name
+                                </td>
+                                <td>
+                                    @String.Format("{0:dd-MM-yyyy}", item.OrderDate)
+                                </td>
+                                <td>
+                                    @String.Format("{0:dd-MM-yyyy}", item.ReturnDate)
+                                </td>
+                                <td>
+                                    @item.OrderPerson
+                                </td>
+                                <td>
+                                    @item.ContactPhone
+                                </td>
+                                <td>
+                                    @item.CheckStandard
+                                </td>
+                                <td>
+                                    @item.Require
+                                </td>
+                                <td>
+                                    @item.Receiver
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

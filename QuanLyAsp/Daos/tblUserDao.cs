@@ -13,5 +13,10 @@ namespace QuanLyAsp.Daos
         {
             return myDb.tblUsers.ToList();
         }
+
+        public List<tlkpNorm> getlist()
+        {
+            return myDb.tlkpNorms.ToList();
+        }
     }
 }

@@ -1,0 +1,6 @@
+YÊU CẦU:
+Tra cứu hợp đồng(tblOrder) theo chỉ tiêu đã chọn(tlkpNorm) từ ngày....Đến Ngày
+Mỗi hợp đồng(tblOrder) có thể có nhiều mẫu(tblSample) mỗi mẫu có thể có nhiều chỉ tiêu(tcomSample_Test)
+View sẽ hiện list chỉ tiêu dữ liệu của 4 trường trong bảng tlkpNorm(Name,Method,Standard,Cost) và ô nhập từ ngày...đến ngày 
+Cho người dùng có thể chọn và nhập ngày để tra cứu
+Kết quả nhận lại sau khi tra cứu sẽ hiện lên 1 bảng chứa thông tin hợp đồng của bảng tblOrder
